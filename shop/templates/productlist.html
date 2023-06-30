@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+<div class="container">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Product List</h1>
+    <a href="/addproduct" class="btn btn-success pull-right">Add Product</a>
+<br>
+<table class="table table-bordered" id="tab1">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Product Name</th>
+            <th>Product Desc</th>
+            <th>Product category</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for prod in prods %}
+    <tr>
+        <td>{{prod.id}}</td>
+        <td>{{prod.ProductName}}</td>
+        <td>{{prod.ProductDescription}}</td>
+        <td>{{prod.ProductCategory}}</td>
+        <td>{{prod.ProductPrice}}</td>
+        <td>{{prod.ProductQty}}</td>
+        <td><img src="{{prod.ProductImage}}" width="40" height="40" alt="NA" class="img-rounded"/> </td>
+        <td>
+            <a href="/addproduct/{{prod.id}}" class="btn btn-success">Edit</a>
+            <a href="#" onclick="return confirmDelete({{prod.id}})" class="btn btn-warning">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block myscript %}
+<script>
+    function confirmDelete(pid){
+            swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this record!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location="/delproduct/"+pid;
+              } else {
+
+              }
+            });
+            return false;
+    }
+    $(function(){
+    $("#tab1").DataTable();
+    });
+
+</script>
+
+{% endblock %}

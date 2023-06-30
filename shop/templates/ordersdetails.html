@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<br>
+<h1>Orders Details::</h1>
+
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td>OrderId</td><td>{{ord.id}}</td>
+        <td>Order Date</td><td>{{ord.OrderDate}}</td>
+    </tr>
+    <tr>
+        <td>Order Total</td><td>{{ord.OrderTotal}}</td>
+        <td>Status</td><td>{{
+
+        .Status}}</td>
+    </tr>
+</table>
+
+<h3>Order Details</h3>
+
+<br>
+<table class="table table-bordered" id="tab1">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>Product Price</th>
+            <th>Product Qty</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for ot in oitems %}
+    <tr>
+        <td>{{ot.ProductID}}</td>
+        <td>{{ot.ProductName}}</td>
+        <td>{{ot.ProductPrice}}</td>
+        <td>{{ot.ProductQty}}</td>
+        <td>{{ot.ProductTotal}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}
+

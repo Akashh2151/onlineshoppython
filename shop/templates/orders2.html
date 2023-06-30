@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<br>
+<h1>Orders History:: [Total Orders: {{sum1}}]</h1>
+
+<br>
+<table class="table table-bordered" id="tab1">
+    <thead>
+        <tr>
+            <th>OrderId</th>
+            <th>Order Date</th>
+            <th>Order Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for ord in ords %}
+    <tr>
+        <td>{{ord.id}}</td>
+        <td>{{ord.OrderDate}}</td>
+        <td>{{ord.OrderTotal}}</td>
+        <td>{{ord.Status}}</td>
+        <td>
+            <a href="/showorderdetails/{{ord.id}}" class="btn btn-success">Details</a>
+            <a href="#" onclick="return confirmDelete({{ord.id}})" class="btn btn-warning">Cancel Order</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block myscript %}
+<script>
+    function confirmDelete(pid){
+            swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this record!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location="/cancelorder/"+pid;
+              } else {
+
+              }
+            });
+            return false; //Donot navigate ie stop navigation
+    }
+    $(function(){
+    $("#tab1").DataTable();
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+<div class="container">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="col-md-6 col-md-offset-2">
+<h1>Product Form::</h1>
+<form name="form1" id="form1" method="post" action="/addproduct" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">Product Master Form::</h2>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                Product Name
+                <input name="name" value="{{prod.ProductName}}" class="form-control"/>
+            </div>
+            <div class="form-group">
+                Product Description
+                <textarea name="desc" lass="form-control">{{prod.ProductDescription}} </textarea>
+            </div>
+            <div class="form-group">
+                Product Category
+                <select name="category" class="form-control">
+                    <option value="">-- Select product Category --</option>
+                    {% for cat in cats %}
+                    {{prod.ProductCategory }}
+                    <option {% ifequal cat.id prod.ProductCategory  %} selected  {% endifequal %} value="{{cat.id}}">{{cat.CategoryName}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                Product Price
+                <input name="price" value="{{prod.ProductPrice}}" class="form-control"/>
+            </div>
+            <div class="form-group">
+                Product Qty
+                <input name="qty" value="{{prod.ProductQty}}" class="form-control"/>
+            </div>
+            <div class="form-group">
+                Product Image
+                <input name="file" id="file" type="file" class="form-control"/>
+                <img src="{{prod.ProductImage}}" id="tt" width="40" height="40" alt="NA" class="rounded-circle"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="btn" value="{{btntext}}" class="btn btn-success"/>
+                <a href="/products" class="btn btn-info">Product List</a>
+            </div>
+
+        </div>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block myscript %}
+<script>
+
+    $(function(){
+
+        readURL=function(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#tt').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+
+        $("#file").change(function(){
+            readURL(this);
+        });
+        <!--$("#form1").validate({-->
+        <!--rules:{-->
+            <!--name:{-->
+                <!--required:true,-->
+                <!--pattern:/^[A-Za-z ]+$/-->
+            <!--}-->
+        <!--},-->
+        <!--messages:{-->
+            <!--name:{-->
+                <!--required:"Name is Required",-->
+                <!--pattern:"Name allows only chars/spaces"-->
+            <!--}-->
+        <!--}-->
+        <!--});-->
+    });
+
+    $("#tab1").DataTable();
+
+    {%  ifnotequal msg "" %}
+        swal("{{msg}}");
+    {% endifnotequal %}
+</script>
+
+{% endblock %}

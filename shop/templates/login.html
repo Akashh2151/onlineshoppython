@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						{% for message in messages %}
+						    <h4>{{message}}</h4>
+						{%endfor%}
+						<form action="/login2" method="POST" name="form1" id="form1">
+							{% csrf_token %}
+							<input type="hidden" name="type" value="login"/>
+							<input type="text" name="user" id="user" placeholder="username " />
+							<input type="password" name="pass2" id="pass2" placeholder="Password" />
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Keep me signed in
+							</span>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						{% for message in messages %}
+						       <h4>{{message}}</h4>
+						{% endfor %}
+						<form action="/login2" method="post" name="form2" id="form2">
+							{% csrf_token %}
+							<input type="hidden" name="type" value="signup"/>
+							<input type="text" name="name" id="name" placeholder="Name"/>
+							<input type="email" name="email" id="email" placeholder="Email Address"/>
+							<input type="password" name="pass" id="pass" placeholder="Password"/>
+							<input type="password" name="pass1" id="pass1" placeholder="Conform Password"/>
+							<div class="g-recaptcha" data-sitekey="6LfqOa0aAAAAAKJqP1Jx2FDajnYy-cV4-iJIb-cA"></div>
+							<button type="submit" name= "name"  class="btn btn-default">Signup</button></form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+<br>
+{% endblock %}
+{% block myscript %}
+<script>
+$(function(){
+$( "#form2" ).validate({
+    rules: {
+        email: {
+            required:true,
+            remote: "check_email"
+        }
+    },
+    messages:{
+       email:{
+           required:"Email ID is Required",
+           remote:"Email ID is Already Registered With System"
+       }
+    }
+});
+});
+</script>
+{% endblock %}
+	
+	

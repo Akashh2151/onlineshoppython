@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   <body class="main-layout" >
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+
+      <!-- end header inner -->
+      <!-- end header -->
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="banner1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+               <li data-target="#banner1" data-slide-to="0" class="active"></li>
+               <li data-target="#banner1" data-slide-to="1"></li>
+               <li data-target="#banner1" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="text-bg">
+                           <h1> <span class="blu">Welcome <br></span>To Shree-Lenses</h1>
+                           <figure><img src="{% static 'images/banner_img.png'%}" alt="#"/></figure>
+                           <a class="read_more" href="#">Shop Now</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="text-bg">
+                           <h1> <span class="blu">Welcome <br></span>To Shree-Lenses</h1>
+                           <figure><img src="{% static 'images/banner_img.png' %}" alt="#"/></figure>
+                           <a class="read_more" href="#">Shop Now</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="text-bg">
+                           <h1> <span class="blu">Welcome <br></span>To Shree-Lenses</h1>
+                           <figure><img src="{% static 'images/banner_img.png '%}" alt="#"/></figure>
+                           <a class="read_more" href="#">Shop Now</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- about section -->
+
+      <!-- about section -->
+      <!-- Our  Glasses section -->
+      <div class="glasses" align="center" style="">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-10 offset-md-1">
+                  <div class="titlepage" >
+                     <h2><span class="blu"> Category </span></h2>
+                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                        {% for cat in cats %}
+                        <div class="panel panel-default" >
+                           <div class="panel-heading">
+                              <h4 class="panel-title" ><img class="img-rounded" src="/media/{{cat.CategoryImage}}" width="50" height="50" al="NA"/>&nbsp;&nbsp;<a href="/index/{{cat.id}}" style="font-size:20px;">{{cat.CategoryName}}</a></h4>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div><!--/category-products-->
+                  </div>
+               </div>
+            </div>
+         </div>
+<br>
+<br>
+<br>
+<br>
+         <div class="col-sm-9 padding-right" align="center" >
+            <div class="features_items" ><!--features_items-->
+               <h2 class="blu" align="center"  style="font-size:40px;">Features-Items </h2>
+               <br>
+               <br>
+               {% for prod in prods %}
+               <div class="col-sm-4">
+                  <div class="product-image-wrapper">
+                     <div class="single-products">
+                        <div class="productinfo text-center">
+                           <img src="{{prod.ProductImage}}" alt="" />
+                           <br>
+                           <h2>Rs. {{prod.ProductPrice}}</h2>
+                           <p>{{prod.ProductName}}</p>
+                           <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>
+                        <div class="product-overlay">
+                           <div class="overlay-content">
+                              <h2>Rs. {{prod.ProductPrice}}</h2>
+                              <p>{{prod.ProductName}}</p>
+                              <a href="addtocart/{{prod.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="choose">
+                        <ul class="nav nav-pills nav-justified">
+                           <li><a href="#"><i class="fa fa-plus-square"></i>-------------------------Add wishlist---------------------</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+      <!-- end Our  Glasses section -->
+      <!-- Our shop section -->
+      <div id="about" class="shop">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-5">
+                  <div  class="shop_img">
+                     <figure><img src="{% static 'images/shop_img.png' %}" alt="#"/></figure>
+                  </div>
+               </div>
+               <div class="col-md-7 padding_right0">
+                  <div class="max_width">
+                     <div class="titlepage">
+                        <h2>Best SunGlasses  At Our shop</h2>
+                        <p>One of the best ways to check the range of the best eyeglasses brands in India is to browse online. We at Titan Eyeplus bring together a range of best eyewear brands in India to offer you a vast collection of spectacle styles. You can either visit us at our stores or order online through our website. If you buy online, then we will deliver your selected pair of glasses to your doorstep, and offer you dedicated after-sales services. Choose the best eyeglasses and sport the bespectacled look in style!</p>
+                        <a class="read_more" href="#">Shop Now</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-5">
+                  <div class="about_img">
+                     <figure><img src="{% static 'images/about_img.png' %}" alt="#"/></figure>
+                  </div>
+               </div>
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2>About Our Shop</h2>
+                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                  </div>
+                  <a class="read_more" href="#">Read More</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end Our shop section -->
+      <!-- clients section -->
+      <div class="clients">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2></h2>
+                     <p></p>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div id="myCarousel" class="carousel slide clients_Carousel " data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <div class="container">
+                              <div class="carousel-caption ">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="clients_box">
+                                          <figure><img src="{% static 'images/our.png'%} " alt="#"/></figure>
+                                          <br>
+                                          <br>
+                                          <h3>Sandy</h3>
+                                          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,It is a long established fact  a more-or-less normal distribution of letters,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="clients_box">
+                                          <figure><img src="{% static 'images/our.png'%} " alt="#"/></figure>
+                                          <br>
+                                          <br>
+                                          <h3>Sandy</h3>
+                                          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,It is a long established fact  a more-or-less normal distribution of letters,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <div class="clients_box">
+                                          <figure><img src="{% static 'images/our.png'%} " alt="#"/></figure>
+                                          <br>
+                                          <br>
+                                          <h3>Sandy</h3>
+                                          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,It is a long established fact  a more-or-less normal distribution of letters,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                     <i class='fa fa-angle-left'></i>
+                     </a>
+                     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                     <i class='fa fa-angle-right'></i>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end clients section -->
+      <!-- contact section -->
+      <div id="contact" class="contact" align="center" >
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <form id="request" class="main_form">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <h3 align="center">Contact Us</h3>
+                           <h1 align="center" style="color:deepskyblue"> ShreeLenses Help Center  </h1>
+                           <h3 align="center"> Customer Information </h3>
+                           <p > SmartBuyGlasses takes pride in providing excellent customer service and satisfaction by guaranteeing the highest quality eyeglasses, sunglasses, and contact lenses. Whether you are a new or returning customer, the SmartBuyGlasses help center can guide you to the answers you are looking for. We're here to help you!
+>
+                           <style >
+                           table {
+                           font-family: arial, sans-serif;
+                           border-collapse: collapse;
+                           width: 30%;
+                           }
+
+                           td, th {
+                           border: 1px solid #dddddd;
+                           text-align: left;
+                           padding: 8px;
+                           }
+
+                           tr:nth-child(even) {
+                           background-color: #dddddd;
+                           }
+                           </style>
+                           <h4 align="center" >How to contact us?</h4>
+                           <table align="center">
+                              <tr>
+                                 <th >Email us :       shreeshop007@gmail.com</th>
+                              </tr>
+                              <tr>
+                                 <th>Contact us :    0000000007</th>
+                              </tr>
+                           </table>
+                        </div>
+
+
+
+{%endblock%}
+

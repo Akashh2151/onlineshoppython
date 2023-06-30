@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<br>
+<h1>Your Shopping Cart:: [Total Cart Amount: {{sum1}}]</h1>
+<div>
+    <a href="/checkout" class="btn btn-info pull-right">Checkout</a>
+    <a href="/" class="btn btn-success pull-right">Add Product to Cart</a>
+
+</div>
+
+<br>
+<table class="table table-bordered" id="tab1">
+    <thead>
+        <tr>
+            <th>CartId</th>
+            <th>Image</th>
+            <th>ProductId</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for cart in carts %}
+    <tr>
+        <td>{{cart.id}}</td>
+        <td><img src="{{cart.ProductImage}}" width="40" height="40" alt="NA" class="img-rounded"/> </td>
+        <td>{{cart.ProductID}}</td>
+        <td>{{cart.ProductName}}</td>
+        <td>{{cart.ProductPrice}}</td>
+        <!-- returns for loop index ==> starts from 1 -->
+        <td><input id="t{{forloop.counter}}" value="{{cart.ProductQty}}" class="form-control"/></td>
+        <td>{{cart.ProductTotal}}</td>
+        <td>
+            <!-- updateqty('t1',1)-->
+            <a onclick="updateqty('t{{forloop.counter}}',{{cart.id}})" href="#" class="btn btn-success">Update</a>
+            <a href="#" onclick="return confirmDelete({{cart.id}})" class="btn btn-warning">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block myscript %}
+<script>
+    function updateqty(id,cid){
+        obj=document.getElementById(id); //get object of t1
+        window.location="/cartupdate?q="+obj.value+"&cid="+cid;
+        //redirect to given URL  /cartupdate?q=2&cid=1
+    }
+    function confirmDelete(pid){
+            swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this record!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location="/cartdelete/"+pid;
+              } else {
+
+              }
+            });
+            return false; //Donot navigate ie stop navigation
+    }
+    $(function(){
+    $("#tab1").DataTable();
+    });
+
+</script>
+
+{% endblock %}
